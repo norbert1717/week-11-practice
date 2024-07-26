@@ -1,0 +1,21 @@
+body > div > div {
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+body > div > div div {
+  border: 1px solid black;
+}
+body > div > div div h2 {
+  color: green;
+}
+body > div > div div h3 {
+  font-size: 36px;
+}
+body > div > div div h3.species {
+  color: yellow;
+}
+body > div > div div h4 {
+  color: blue;
+}/*# sourceMappingURL=new-style.css.map */
