@@ -28,50 +28,34 @@
 
 // érdemes az elején kimenteni az adathalmazok különböző részeit, így nem kell annyi karaktert legépelni
     // a létező kulcsokat tudjuk kimenteni a memóriába
-    // már eleve a függvényben bizonyos objektumokat veszünk csak át
+    // már eleve a függvényben bizonyos objektumokat veszünk csak át(name, species, status, image)
 
-
-        const characterCard = ({ name, species, status, image }) => {
-        // console.log(characterData);
+ const characterCard = ({ name, species, status, image, location }) => {
       
-        /* const name = characterData.name;
-        const species = characterData.species;
-        const status = characterData.status;
-        const image = characterData.image; */
+    return ` <div class="card"> 
+      <h2>${name}</h2>
+      <h3 class="species">${species}</h3>
+      <h4>${status}</h4>
+      <h5>${location.name}</h5>
+      <img src=${image} />
+    </div> `;
+  }
       
-        // const { name, species, status, image } = characterData;
+const charactersComponent = (charactersData) => `
+    <div class="characters">
+      ${charactersData.map(characterData => characterCard(characterData)).join("")}
+    </div>
+  `;
       
-        return ` <div class="card"> 
-          <h2>${name}</h2>
-          <h3 class="species">${species}</h3>
-          <h3>kismacska</h3>
-          <h4>${status}</h4>
-          <img src=${image} />
-        </div> `;
-      }
+const makeDomFromData = (data, rootElement) => {
+    rootElement.insertAdjacentHTML("beforeend", charactersComponent(data.results));
+};
       
-      const charactersComponent = (charactersData) => `
-        <div class="characters">
-          ${charactersData.map(characterData => characterCard(characterData)).join("")}
-        </div>
-      `;
+fetch("https://rickandmortyapi.com/api/character")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data); // itt lesz elérhető az adat
       
-      const makeDomFromData = (data, rootElement) => {
-        rootElement.insertAdjacentHTML("beforeend", charactersComponent(data.results));
-      };
+    makeDomFromData(data, document.querySelector("#root"));
       
-      fetch("https://rickandmortyapi.com/api/character")
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data); // itt lesz elérhető az adat
-      
-          makeDomFromData(data, document.querySelector("#root"));
-          /* data.results.forEach((characterData) => {
-            document.querySelector('#root').insertAdjacentHTML("beforeend", characterCard(characterData));
-            console.log("dom manipulation");
-          }) */
-      
-          /* document.querySelector("#root").insertAdjacentHTML("beforeend", charactersComponent(data.results));
-          console.log("dom manipulation"); */
-      
-        })
+})
