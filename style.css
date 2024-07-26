@@ -1,0 +1,30 @@
+/* kártya konténer eleme: characters div
+ > a közvetlen child szelektor így a childban a szelektor már nem található meg
+ sortörés: flex-wrap tulajdonság- > ha nem fér el több elem egymás mellett akkor törje több sorba
+ minden kártyán legyen border: 
+ minden szűrőnek más szín*/
+ 
+ body>div>div {
+  max-width: 800px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+body>div>div>div {
+  border: 1px solid black;
+}
+
+body>div>div>div h2 {
+  color: green;
+}
+
+body>div>div>div h3 {
+  color: blue;
+}
+
+body>div>div>div h4 {
+  color: brown;
+}
