@@ -2,18 +2,33 @@
   sass más szintaxisban működik, de az scss jobban elterjedt
   */
 
-
-body {
-    #root {
-      .characters {
+  body {
+    >div {
+      >div {
         max-width: 800px;
   
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
   
-        .card {
+        div {
           border: 1px solid black;
+  
+          h2 { 
+            color: green; 
+          }
+  
+          h3 {
+            font-size: 36px;
+  
+            &.species {
+              color: yellow;
+            }
+          }
+  
+          h4 { 
+            color: blue; 
+          }
         }
       }
     }
